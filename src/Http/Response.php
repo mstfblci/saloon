@@ -504,7 +504,7 @@ class Response
      *
      * @return bool
      */
-    public function isXML(): bool
+    public function isXml(): bool
     {
         return str_contains($this->header('Content-Type'), 'xml');
     }
