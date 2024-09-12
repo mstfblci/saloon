@@ -490,6 +490,26 @@ class Response
     }
 
     /**
+     * Determine if the response is in JSON format.
+     *
+     * @return bool
+     */
+    public function isJson(): bool
+    {
+        return str_contains($this->header('Content-Type'), 'json');
+    }
+
+    /**
+     * Determine if the response is in XML format.
+     *
+     * @return bool
+     */
+    public function isXML(): bool
+    {
+        return str_contains($this->header('Content-Type'), 'xml');
+    }
+
+    /**
      * Create a temporary resource for the stream.
      *
      * Useful for storing the file. Make sure to close the raw stream after you have used it.
