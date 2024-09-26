@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Saloon\Traits\Responses;
 
-trait HasCustomResponses
+trait HasResponseClass
 {
     /**
      * Specify a default response class.
