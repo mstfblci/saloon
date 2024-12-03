@@ -26,7 +26,7 @@ trait SendsRequests
      *
      * @param callable(\Throwable, \Saloon\Http\Request): (bool)|null $handleRetry
      */
-    public function send(Request $request, ?MockClient $mockClient = null, callable $handleRetry = null): Response
+    public function send(Request $request, ?MockClient $mockClient = null, ?callable $handleRetry = null): Response
     {
         if (is_null($handleRetry)) {
             $handleRetry = static fn (): bool => true;
@@ -163,7 +163,7 @@ trait SendsRequests
      *
      * @param callable(\Throwable, \Saloon\Http\Request): (bool)|null $handleRetry
      */
-    public function sendAndRetry(Request $request, int $tries, int $interval = 0, callable $handleRetry = null, bool $throw = true, ?MockClient $mockClient = null, bool $useExponentialBackoff = false): Response
+    public function sendAndRetry(Request $request, int $tries, int $interval = 0, ?callable $handleRetry = null, bool $throw = true, ?MockClient $mockClient = null, bool $useExponentialBackoff = false): Response
     {
         $request->tries = $tries;
         $request->retryInterval = $interval;

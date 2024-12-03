@@ -31,7 +31,7 @@ class Fixture
     /**
      * Constructor
      */
-    public function __construct(string $name = '', Storage $storage = null)
+    public function __construct(string $name = '', ?Storage $storage = null)
     {
         $this->name = $name;
         $this->storage = $storage ?? new Storage(MockConfig::getFixturePath(), true);
