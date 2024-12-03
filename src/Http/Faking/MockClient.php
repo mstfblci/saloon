@@ -300,7 +300,7 @@ class MockClient
     /**
      * Assert a request count has been met.
      */
-    public function assertSentCount(int $count, string $requestClass = null): void
+    public function assertSentCount(int $count, ?string $requestClass = null): void
     {
         if (is_string($requestClass)) {
             $actualCount = $this->getRequestSentCount()[$requestClass] ?? 0;
