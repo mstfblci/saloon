@@ -26,7 +26,7 @@ trait SendsRequests
      *
      * @param callable(\Throwable, \Saloon\Http\Request): (bool)|null $handleRetry
      */
-    public function send(Request $request, MockClient $mockClient = null, callable $handleRetry = null): Response
+    public function send(Request $request, ?MockClient $mockClient = null, ?callable $handleRetry = null): Response
     {
         if (is_null($handleRetry)) {
             $handleRetry = static fn(): bool => true;
@@ -126,7 +126,7 @@ trait SendsRequests
     /**
      * Send a request asynchronously
      */
-    public function sendAsync(Request|BatchRequest $request, MockClient $mockClient = null): PromiseInterface
+    public function sendAsync(Request|BatchRequest $request, ?MockClient $mockClient = null): PromiseInterface
     {
         // We'll wrap the following logic in our own Promise which means we won't
         // build up our PendingRequest until the promise is actually being sent
@@ -183,7 +183,7 @@ trait SendsRequests
      *
      * @param callable(\Throwable, \Saloon\Http\Request): (bool)|null $handleRetry
      */
-    public function sendAndRetry(Request $request, int $tries, int $interval = 0, callable $handleRetry = null, bool $throw = true, MockClient $mockClient = null, bool $useExponentialBackoff = false): Response
+    public function sendAndRetry(Request $request, int $tries, int $interval = 0, ?callable $handleRetry = null, bool $throw = true, ?MockClient $mockClient = null, bool $useExponentialBackoff = false): Response
     {
         $request->tries = $tries;
         $request->retryInterval = $interval;
@@ -196,7 +196,7 @@ trait SendsRequests
     /**
      * Create a new PendingRequest
      */
-    public function createPendingRequest(Request $request, MockClient $mockClient = null): PendingRequest
+    public function createPendingRequest(Request $request, ?MockClient $mockClient = null): PendingRequest
     {
         return new PendingRequest($this, $request, $mockClient);
     }
