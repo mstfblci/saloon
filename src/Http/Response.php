@@ -496,7 +496,13 @@ class Response
      */
     public function isJson(): bool
     {
-        return str_contains($this->header('Content-Type'), 'json');
+        $contentType = $this->header('Content-Type');
+
+        if(is_null($contentType)) {
+            return false;
+        }
+
+        return str_contains($contentType, 'json');
     }
 
     /**
@@ -506,7 +512,13 @@ class Response
      */
     public function isXml(): bool
     {
-        return str_contains($this->header('Content-Type'), 'xml');
+        $contentType = $this->header('Content-Type');
+
+        if(is_null($contentType)) {
+            return false;
+        }
+
+        return str_contains($contentType, 'xml');
     }
 
     /**
